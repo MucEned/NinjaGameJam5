@@ -1,0 +1,201 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/EnemiesSheet/EVampire-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Candy/Cvampire.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12, 3 )
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/HitBox/Col1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.8, 0.801 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_attack_sound"
+}, {
+"args": [  ],
+"method": "continue_to_move"
+}, {
+"args": [  ],
+"method": "stop_attack_sound"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/HitBox/Col1:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/HitBox/Col1:shape:extents")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 12, 3 ), Vector2( 10, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/HitBox/Col1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 18, 9 ), Vector2( 20, 9 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 5.0
+height = 14.0
+
+[node name="Emeny" instance=ExtResource( 1 )]
+Candy = ExtResource( 3 )
+type = 3
+MAX_SPEED = 12
+A = 16
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, -9 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( -1, -20 )
+texture = ExtResource( 2 )
+hframes = 12
+frame = 11
+
+[node name="HitBox" parent="Sprite" index="0"]
+damage = 3
+
+[node name="Col1" parent="Sprite/HitBox" index="0"]
+position = Vector2( 20, 9 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="RayCast2D" parent="Sprite" index="1"]
+position = Vector2( 1, 8 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+collision_mask = 2
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Animate"
+anims/Animate = SubResource( 3 )
+anims/Attack = SubResource( 4 )
+anims/Dead = SubResource( 5 )
+
+[node name="HurtBox" parent="." index="3"]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( 0, -12 )
+rotation = 1.5708
+shape = SubResource( 6 )
+
+[node name="EnemyStat" parent="." index="4"]
+HP = 6
+
+[node name="Center" parent="." index="5"]
+position = Vector2( 0, -12 )
+
+[node name="CollisionShape2D" parent="SpellCheck" index="0"]
+shape = null
+
+[connection signal="dead" from="EnemyStat" to="." method="_on_EnemyStat_dead"]
+
+[editable path="Sprite/HitBox"]
+[editable path="HurtBox"]

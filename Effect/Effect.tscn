@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="Effect" type="Node2D"]
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, -16 )
+hframes = 6
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

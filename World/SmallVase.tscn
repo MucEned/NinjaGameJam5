@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/SmallVase.png" type="Texture" id=1]
+[ext_resource path="res://World/BackgroundObject.tscn" type="PackedScene" id=2]
+
+[node name="SmallVase" instance=ExtResource( 2 )]
+position = Vector2( 8, -8 )
+texture = ExtResource( 1 )

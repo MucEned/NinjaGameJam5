@@ -1,0 +1,236 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/EnemiesSheet/Zombie-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Sound/Poision.wav" type="AudioStream" id=3]
+[ext_resource path="res://Candy/CZombie.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/HitBox/Col1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11, 12, 13 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox/Col1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox/Col1:shape:extents")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 2 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 2, 2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox/Col1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 12, -24 ), Vector2( 29, -22 ), Vector2( 37, -5 ), Vector2( 37, -2 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2, 0.8, 0.801 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_attack_sound"
+}, {
+"args": [  ],
+"method": "continue_to_move"
+}, {
+"args": [  ],
+"method": "stop_attack_sound"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/HitBox/Col1:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/HitBox/Col1:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 13, -8 ), Vector2( 30, -6 ), Vector2( 38, 11 ), Vector2( 38, 14 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/HitBox/Col1:shape:extents")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 2 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 2, 2 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5, 11 )
+
+[node name="Emeny" instance=ExtResource( 1 )]
+Candy = ExtResource( 4 )
+type = 4
+MAX_SPEED = 7
+A = 16
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -1, -10 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( -1, -16 )
+texture = ExtResource( 2 )
+hframes = 14
+frame = 6
+
+[node name="HitBox" parent="Sprite" index="0"]
+damage = 4
+
+[node name="Col1" parent="Sprite/HitBox" index="0"]
+position = Vector2( 30, -6 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="RayCast2D" parent="Sprite" index="1"]
+position = Vector2( 1, 6 )
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 2
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Animate"
+anims/Animate = SubResource( 3 )
+anims/Attack = SubResource( 4 )
+anims/Dead = SubResource( 5 )
+
+[node name="HurtBox" parent="." index="3"]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( -1, -11 )
+shape = SubResource( 6 )
+
+[node name="EnemyStat" parent="." index="4"]
+HP = 25
+
+[node name="Center" parent="." index="5"]
+position = Vector2( 0, -10 )
+
+[node name="AttackSound" parent="." index="10"]
+stream = ExtResource( 3 )
+
+[connection signal="dead" from="EnemyStat" to="." method="_on_EnemyStat_dead"]
+
+[editable path="Sprite/HitBox"]
+[editable path="HurtBox"]

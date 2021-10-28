@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bite.wav-3e39b5cee022e8f5003c4f2554a836b6.sample"
+
+[deps]
+
+source_file="res://Sound/Bite.wav"
+dest_files=[ "res://.import/Bite.wav-3e39b5cee022e8f5003c4f2554a836b6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/Bungee-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/PeakBtn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/PeakContainer.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 6
+font_data = ExtResource( 1 )
+
+[node name="PeakContainer" type="VBoxContainer"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_bottom = 7.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 320.0
+margin_bottom = 6.0
+custom_fonts/font = SubResource( 1 )
+text = "Choice one:"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 10.0
+margin_right = 320.0
+margin_bottom = 14.0
+
+[node name="Button1" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_right = 320.0
+margin_bottom = 0.0
+texture_normal = null
+
+[node name="Button2" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_top = 4.0
+margin_right = 320.0
+margin_bottom = 4.0
+texture_normal = null

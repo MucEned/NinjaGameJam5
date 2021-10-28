@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/EnemiesSheet/EMalon-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Candy/Cmalon.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 2 )
+
+[sub_resource type="Animation" id=2]
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Dead"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5, 2.5 )
+
+[node name="Emeny" instance=ExtResource( 1 )]
+Candy = ExtResource( 3 )
+type = 1
+A = 64
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+hframes = 7
+frame = 1
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Animate"
+anims/Animate = SubResource( 2 )
+anims/Dead = SubResource( 3 )
+
+[node name="HurtBox" parent="." index="3"]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( 0, -2.5 )
+shape = SubResource( 4 )
+
+[node name="EnemyStat" parent="." index="4"]
+HP = 4
+
+[node name="Center" parent="." index="5"]
+position = Vector2( 0, -3 )
+
+[connection signal="dead" from="EnemyStat" to="." method="_on_EnemyStat_dead"]
+
+[editable path="HurtBox"]

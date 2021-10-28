@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/Full.png" type="Texture" id=1]
+[ext_resource path="res://UI/PeakBtn.gd" type="Script" id=2]
+[ext_resource path="res://UI/DefaultTheme.tres" type="Theme" id=3]
+[ext_resource path="res://Sound/Claim.wav" type="AudioStream" id=4]
+
+[node name="PeakBtn" type="TextureButton"]
+margin_right = 16.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundStop" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="pressed" from="." to="." method="_on_PeakBtn_pressed"]
+[connection signal="timeout" from="SoundStop" to="." method="_on_SoundStop_timeout"]

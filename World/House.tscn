@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://World/House.png" type="Texture" id=1]
+[ext_resource path="res://World/BackgroundObject.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Effect/Light.png" type="Texture" id=3]
+[ext_resource path="res://World/Doo.png" type="Texture" id=4]
+[ext_resource path="res://World/House.gd" type="Script" id=5]
+[ext_resource path="res://UI/Bungee-Regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 16 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "close"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ClaimCandiesArea/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 32 ), Vector2( -5.0342, 32 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "open"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -5, 32 ), Vector2( -24, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ClaimCandiesArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 6 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 1, 10 )
+
+[node name="House" instance=ExtResource( 2 )]
+position = Vector2( 48, -48 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="Door" type="Sprite" parent="." index="0"]
+position = Vector2( -24, 32 )
+texture = ExtResource( 4 )
+
+[node name="Light2" type="Sprite" parent="." index="1"]
+modulate = Color( 1, 0.839216, 0.501961, 1 )
+position = Vector2( -14.2164, 7.80847 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Light" type="Sprite" parent="." index="2"]
+position = Vector2( -14.5842, 7.64605 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
+[node name="Light3" type="Sprite" parent="." index="3"]
+modulate = Color( 1, 0.803922, 0.501961, 1 )
+position = Vector2( 14.1658, 14.396 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
+[node name="ClaimCandiesArea" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClaimCandiesArea" index="0"]
+position = Vector2( -4, 32 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+anims/close = SubResource( 2 )
+anims/open = SubResource( 3 )
+
+[node name="Label" type="Label" parent="." index="6"]
+visible = false
+margin_left = 8.0
+margin_top = -11.554
+margin_right = 86.0
+margin_bottom = 2.44605
+custom_fonts/font = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndPoint" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndPoint" index="0"]
+light_mask = 0
+position = Vector2( -5, 40 )
+shape = SubResource( 5 )
+
+[node name="CastRight" type="RayCast2D" parent="." index="8"]
+position = Vector2( -5.034, 45 )
+enabled = true
+cast_to = Vector2( 400, 0 )
+collision_mask = 4
+
+[node name="CastLeft" type="RayCast2D" parent="." index="9"]
+position = Vector2( -4, 45 )
+enabled = true
+cast_to = Vector2( -400, 0 )
+collision_mask = 4
+
+[connection signal="body_entered" from="ClaimCandiesArea" to="." method="_on_ClaimCandiesArea_body_entered"]
+[connection signal="body_exited" from="ClaimCandiesArea" to="." method="_on_ClaimCandiesArea_body_exited"]
+[connection signal="body_entered" from="EndPoint" to="." method="_on_EndPoint_body_entered"]
