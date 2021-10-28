@@ -206,7 +206,6 @@ disabled = true
 position = Vector2( 1, 6 )
 enabled = true
 cast_to = Vector2( 40, 0 )
-collision_mask = 2
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "Animate"
@@ -227,7 +226,7 @@ HP = 25
 [node name="Center" parent="." index="5"]
 position = Vector2( 0, -10 )
 
-[node name="AttackSound" parent="." index="10"]
+[node name="AttackSound" parent="." index="9"]
 stream = ExtResource( 3 )
 
 [connection signal="dead" from="EnemyStat" to="." method="_on_EnemyStat_dead"]

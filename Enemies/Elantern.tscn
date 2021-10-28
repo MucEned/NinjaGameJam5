@@ -184,7 +184,6 @@ disabled = true
 position = Vector2( 1, 11 )
 enabled = true
 cast_to = Vector2( 30, 0 )
-collision_mask = 2
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "Animate"

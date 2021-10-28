@@ -13,10 +13,12 @@ func _physics_process(delta):
 		counting = true
 		attackDecide.start()
 	elif playerCast.is_colliding() and not counting:
+		backEyeColliding = false
 		counting = true
 		attackDecide.start()
 	
 func attack():
+	is_attacking = true
 	var ran = rand_range(-1, 1)
 	if ran < 0:
 		basic_attack()
@@ -24,7 +26,7 @@ func attack():
 		skill()
 
 func continue_to_move():
-	backEyeColliding = false
+	is_attacking = true
 	sprite.scale.x = direction
 	animator.play("Animate")
 	current_speed = MAX_SPEED
@@ -39,6 +41,7 @@ func basic_attack():
 	pass
 
 func skill():
+	is_attacking = true
 	current_speed = 0
 	if not dead:
 		animator.play("Skill")

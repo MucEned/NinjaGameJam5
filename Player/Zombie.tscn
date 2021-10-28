@@ -51,7 +51,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.2, 0.3, 0.8, 0.9, 0.901 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
-"args": [ 8 ],
+"args": [ 6 ],
 "method": "increase_dmg"
 }, {
 "args": [  ],

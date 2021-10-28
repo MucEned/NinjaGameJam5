@@ -19,6 +19,8 @@ onready var attackDecide = $Attack
 onready var hitSound = $HitSound
 onready var hitSoundCount = $HitSoundCount
 
+onready var slowcast = $SlowCheck
+
 onready var attackSound = $AttackSound
 
 var GameController = ResourceLoader.GameController
@@ -27,6 +29,8 @@ var speed_increase = [0,0,1,1,1,2,2,2,3,3]
 var counting = false
 var dead = false
 
+var is_attacking = false
+
 func _ready():
 	var rand = rand_range(-3, 3)
 	MAX_SPEED += speed_increase[GameController.wave] + rand
@@ -34,6 +38,11 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+	if slowcast.is_colliding() and not is_attacking:
+		current_speed = MAX_SPEED * 0.3
+	elif not slowcast.is_colliding() and not is_attacking:
+		current_speed = MAX_SPEED
+		
 	if playerCast.is_colliding() and not counting:
 		counting = true
 		attackDecide.start()
@@ -67,15 +76,6 @@ func _on_EnemyStat_gethit():
 	hitSound.play()
 	motion.x = 0
 	pass # Replace with function body.
-
-# warning-ignore:unused_argument
-func _on_SpellCheck_area_entered(area):
-	if current_speed == MAX_SPEED:
-		current_speed *= 0.3
-
-# warning-ignore:unused_argument
-func _on_SpellCheck_area_exited(area):
-	current_speed = MAX_SPEED
 	
 func spawn_mini_vampire():
 	var vcreep = Utils.instance_scene_on_main(VCreep, self.global_position)
@@ -89,12 +89,14 @@ func _on_Attack_timeout():
 		attack()
 
 func attack():
+	is_attacking = true
 	current_speed = 0
 	if not dead:
 		animator.play("Attack")
 	pass
 
 func continue_to_move():
+	is_attacking = false
 	animator.play("Animate")
 	current_speed = MAX_SPEED
 	pass

@@ -9,10 +9,10 @@
 extents = Vector2( 4, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 35, 2 )
+extents = Vector2( 5, 5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 14, 2 )
+extents = Vector2( 11, 8 )
 
 [sub_resource type="Animation" id=4]
 length = 0.3
@@ -233,10 +233,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 0.1, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -370,22 +370,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 0.1, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Noti:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -1, -38 ), Vector2( -1, -38 ), Vector2( -1, -78 ), Vector2( -1, -89 ), Vector2( -1, -38 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -397,7 +385,7 @@ MAX_SPEED = 15
 A = 16
 
 [node name="Noti" type="Sprite" parent="." index="0"]
-position = Vector2( -1, -89 )
+position = Vector2( -1, -38 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 4 )
 
@@ -409,18 +397,20 @@ shape = SubResource( 1 )
 position = Vector2( 0, -32 )
 texture = ExtResource( 2 )
 hframes = 31
-frame = 28
+frame = 4
 
 [node name="HitBox" parent="Sprite" index="0"]
 damage = 4
 
 [node name="Col1" parent="Sprite/HitBox" index="0"]
-position = Vector2( 0, 30 )
+position = Vector2( 34, 17 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Col2" parent="Sprite/HitBox" index="1"]
-position = Vector2( -1, 24 )
+position = Vector2( 11, 23 )
 shape = SubResource( 3 )
+disabled = true
 
 [node name="RayCast2D" parent="Sprite" index="1"]
 position = Vector2( 0, 28 )
@@ -428,6 +418,7 @@ enabled = true
 cast_to = Vector2( 50, 0 )
 
 [node name="BackEye" type="RayCast2D" parent="Sprite" index="2"]
+modulate = Color( 1, 1, 0, 1 )
 position = Vector2( 0, 28 )
 enabled = true
 cast_to = Vector2( -50, 0 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Boxes/HurtBox.tscn" type="PackedScene" id=2]
@@ -23,9 +23,6 @@ void fragment(){
 shader = SubResource( 1 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 4, 1 )
 
 [node name="Emeny" type="KinematicBody2D"]
 collision_layer = 4
@@ -54,14 +51,6 @@ collision_mask = 64
 
 [node name="Center" type="Position2D" parent="."]
 
-[node name="SpellCheck" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpellCheck"]
-position = Vector2( 0, -1 )
-shape = SubResource( 3 )
-
 [node name="Attack" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -76,10 +65,16 @@ one_shot = true
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
 
+[node name="SlowCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, -12 )
+enabled = true
+cast_to = Vector2( 0, 30 )
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
+
 [connection signal="area_entered" from="HurtBox" to="EnemyStat" method="_on_HurtBox_area_entered"]
 [connection signal="hit" from="HurtBox" to="EnemyStat" method="_on_HurtBox_hit"]
 [connection signal="gethit" from="EnemyStat" to="." method="_on_EnemyStat_gethit"]
-[connection signal="area_entered" from="SpellCheck" to="." method="_on_SpellCheck_area_entered"]
-[connection signal="area_exited" from="SpellCheck" to="." method="_on_SpellCheck_area_exited"]
 [connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
 [connection signal="timeout" from="HitSoundCount" to="." method="_on_HitSoundCount_timeout"]

@@ -118,8 +118,8 @@ anims/Invisible = SubResource( 5 )
 [node name="Center" parent="." index="6"]
 position = Vector2( 0, -10 )
 
-[node name="CollisionShape2D" parent="SpellCheck" index="0"]
-shape = null
+[node name="SlowCheck" parent="." index="11"]
+enabled = false
 
 [connection signal="dead" from="EnemyStat" to="." method="_on_EnemyStat_dead"]
 
